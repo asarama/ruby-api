@@ -48,8 +48,4 @@ class Api::V1::UsersController < ApplicationController
     def user_params
       params.fetch(:user, {}).permit(:name, :email)
     end
-
-    def api_root
-      @api_root = "/api/v1/"
-    end
 end
