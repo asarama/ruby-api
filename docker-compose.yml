@@ -1,0 +1,32 @@
+version: '3'
+
+networks:
+  backend:
+    driver: ${NETWORKS_DRIVER}
+volumes:
+  postgres:
+    driver: ${VOLUMES_DRIVER}
+
+services:
+  postgres:
+    container_name: ruby_api_postgres
+    platform: linux
+    image: postgres
+    ports:
+      - "${POSTGRES_PORT_OUTSIDE}:${POSTGRES_PORT_INSIDE}"
+    restart: "no"
+    environment:
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASS}
+    networks:
+      - backend
+  adminer:
+    container_name: ruby_api_adminer
+    platform: linux
+    image: adminer
+    restart: "no"
+    ports:
+      - ${ADMINER_PORT}:8080
+    networks:
+      - backend
