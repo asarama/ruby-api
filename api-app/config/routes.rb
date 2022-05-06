@@ -5,7 +5,9 @@ Rails.application.routes.draw do
       resources :companies do
         resources :members, only: [:index, :create, :destroy], controller: "company_members"
       end
-      resources :users
+      resources :users do
+        resources :projects, only: [:index], controller: "user_projects"
+      end
     end
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -48,4 +48,8 @@ project3 = Project.create!(name: "Small Project", start_date: 3.days.ago)
 project4 = Project.create!(name: "Tiny Project", start_date: 1.day.ago)
 puts "Created 4 projects"
 
+puts "Adding projects to company..."
+Company.find_by(name: "ABC").projects << Project.first(4)
+puts "Added 4 to company ABC"
+
 puts "Done."
